@@ -48,6 +48,7 @@ Environment variables are made available for all of the options of `avahi-daemon
 | `publish`   | `publish-a-on-ipv6`               | `PUBLISH_PUBLISH_A_ON_IPV6`               |
 | `reflector` | `enable-reflector`                | `REFLECTOR_ENABLE_REFLECTOR`              |
 | `reflector` | `reflect-ipv`                     | `REFLECTOR_REFLECT_IPV`                   |
+| `reflector` | `reflect-filters`                 | `REFLECTOR_REFLECT_FILTERS`               |
 | `rlimits`   | `rlimit-as`                       | `RLIMITS_RLIMIT_AS`                       |
 | `rlimits`   | `rlimit-core`                     | `RLIMITS_RLIMIT_CORE`                     |
 | `rlimits`   | `rlimit-data`                     | `RLIMITS_RLIMIT_DATA`                     |

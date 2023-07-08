@@ -125,6 +125,9 @@ fi
 if [ -n "${REFLECTOR_REFLECT_IPV}" ]; then
   avahi_set "reflector" "reflect-ipv" "${REFLECTOR_REFLECT_IPV}"
 fi
+if [ -n "${REFLECTOR_REFLECT_FILTERS}" ]; then
+  avahi_set "reflector" "reflect-filters" "${REFLECTOR_REFLECT_FILTERS}"
+fi
 
 
 # rlimits section
