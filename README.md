@@ -88,7 +88,7 @@ docker network create --driver macvlan --subnet 10.0.0.0/24 --gateway 10.0.0.1 -
 
 You can also connect to a VLAN on a physical interface by suffixing the parent with `.` and the VLAN ID (e.g. `--opt parent=eno1.123` for VLAN 123 on the `eno1` interface. The sub-interface does not need to exist before running the command to create the network as the driver will automatically create this.
 
-To ensure that an IP conflict does not occur, you should specify an available IP address on your physical network when attaching the network to your container. Assuming that your container is called `avahi` and `10.0.0.1` is an available IP in that network, you can connect this network as follows:
+To ensure that an IP conflict does not occur, you should specify an available IP address on your physical network when attaching the network to your container. Assuming that your container is called `avahi` and `10.0.0.10` is an available IP in that network, you can connect this network as follows:
 
 ```bash
 docker network connect physical avahi --ip 10.0.0.10
