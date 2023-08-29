@@ -157,24 +157,24 @@ fi
 # This can happen if the container was killed
 PID_FILE=/var/run/avahi-daemon/pid
 if [ -f "${PID_FILE}" ]; then
-	AVAHI_PID="$(cat "${PID_FILE}")"
-	>&2 echo "Found PID file (${PID_FILE}) in container with PID ${AVAHI_PID}"
+  AVAHI_PID="$(cat "${PID_FILE}")"
+  >&2 echo "Found PID file (${PID_FILE}) in container with PID ${AVAHI_PID}"
   if [ -z "${AVAHI_PID}" ]; then
-		>&2 echo "PID file is empty, cleaning up"
-		>&2 rm -v "${PID_FILE}"
-	elif [ "$$" == "${AVAHI_PID}" ]; then
-		>&2 echo "PID matches the current script"
-		>&2 echo "Safe to assume a previous instance of avahi exited uncleanly"
-		>&2 rm -v "${PID_FILE}"
-	elif [ ! -d "/proc/${AVAHI_PID}" ]; then
-		>&2 echo "PID not found in current namespace"
-		>&2 echo "Safe to assume a previous instance of avahi exited uncleanly"
-		>&2 rm -v "${PID_FILE}"
-	else
-		>&2 echo "PID is running, are you trying to start another instance?"
-		>&2 echo "Exiting without starting avahi"
-		exit 1
-	fi
+    >&2 echo "PID file is empty, cleaning up"
+    >&2 rm -v "${PID_FILE}"
+  elif [ "$$" == "${AVAHI_PID}" ]; then
+    >&2 echo "PID matches the current script"
+    >&2 echo "Safe to assume a previous instance of avahi exited uncleanly"
+    >&2 rm -v "${PID_FILE}"
+  elif [ ! -d "/proc/${AVAHI_PID}" ]; then
+    >&2 echo "PID not found in current namespace"
+    >&2 echo "Safe to assume a previous instance of avahi exited uncleanly"
+    >&2 rm -v "${PID_FILE}"
+  else
+    >&2 echo "PID is running, are you trying to start another instance?"
+    >&2 echo "Exiting without starting avahi"
+    exit 1
+  fi
 fi
 
 
