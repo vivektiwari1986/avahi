@@ -159,7 +159,10 @@ PID_FILE=/var/run/avahi-daemon/pid
 if [ -f "${PID_FILE}" ]; then
 	AVAHI_PID="$(cat "${PID_FILE}")"
 	>&2 echo "Found PID file (${PID_FILE}) in container with PID ${AVAHI_PID}"
-	if [ "$$" == "${AVAHI_PID}" ]; then
+  if [ -z "${AVAHI_PID}" ]; then
+		>&2 echo "PID file is empty, cleaning up"
+		>&2 rm -v "${PID_FILE}"
+	elif [ "$$" == "${AVAHI_PID}" ]; then
 		>&2 echo "PID matches the current script"
 		>&2 echo "Safe to assume a previous instance of avahi exited uncleanly"
 		>&2 rm -v "${PID_FILE}"
