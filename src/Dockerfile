@@ -1,7 +1,27 @@
-FROM alpine
+# Dockerfile
+FROM alpine:latest
 
-RUN apk add --no-cache avahi augeas
+# Install required packages
+RUN apk add --no-cache \
+    python3 \
+    py3-pip \
+    avahi \
+    avahi-tools \
+    dbus \
+    bash
 
-ADD entrypoint.sh /opt/entrypoint.sh
+# Install Python mDNS publisher
+RUN pip3 install mdns-publisher
 
-ENTRYPOINT ["/opt/entrypoint.sh"]
+# Create directory for scripts and config
+RUN mkdir -p /app
+
+# Create entrypoint script
+COPY entrypoint.sh /app/
+RUN chmod +x /app/entrypoint.sh
+
+# Set working directory
+WORKDIR /app
+
+# Default command
+ENTRYPOINT ["/app/entrypoint.sh"]
