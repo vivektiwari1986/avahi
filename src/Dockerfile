@@ -1,15 +1,20 @@
 # Dockerfile
 FROM alpine:latest
 
-# Install required packages
+# Install required packages including build dependencies
 RUN apk add --no-cache \
     python3 \
-    python3-venv \
+    py3-virtualenv \
     py3-pip \
     avahi \
     avahi-tools \
     dbus \
-    bash
+    bash \
+    gcc \
+    musl-dev \
+    python3-dev \
+    dbus-dev \
+    glib-dev
 
 # Create and activate virtual environment
 ENV VIRTUAL_ENV=/opt/venv

@@ -1,7 +1,19 @@
 #!/bin/bash
 
+# Make sure the D-Bus directory exists
+mkdir -p /var/run/dbus
+
+# Start the D-Bus daemon
+dbus-daemon --system --fork
+
+# Wait a moment for D-Bus to start
+sleep 2
+
 # Start the Avahi daemon
 /usr/sbin/avahi-daemon --daemonize
+
+# Wait a moment for Avahi to start
+sleep 2
 
 # Create Python script to read aliases and publish them
 cat > /app/publish_aliases.py << 'EOF'
