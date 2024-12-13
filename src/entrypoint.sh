@@ -25,8 +25,8 @@ def main():
         print("No aliases found in config file")
         sys.exit(1)
     
-    cmd = ['mdns-publish-cname'] + aliases
-    os.execvp('mdns-publish-cname', cmd)
+    cmd = ['/opt/venv/bin/mdns-publish-cname'] + aliases
+    os.execv('/opt/venv/bin/mdns-publish-cname', cmd)
 
 if __name__ == '__main__':
     main()
@@ -34,5 +34,6 @@ EOF
 
 chmod +x /app/publish_aliases.py
 
-# Run the publisher script
+# Activate virtual environment and run the publisher script
+. /opt/venv/bin/activate
 exec python3 /app/publish_aliases.py
