@@ -42,7 +42,7 @@ services:
   mdns-publisher:
     build:
       # Replace with your repository path if you've forked it
-      context: https://github.com/vivektiwari1986/avahi.git#dev:src
+      context: https://github.com/vivektiwari1986/mDNS-publisher.git#dev:src
     container_name: mdns-publisher
     network_mode: host  # Required for mDNS to work properly
     restart: unless-stopped
@@ -61,7 +61,7 @@ If you prefer using Docker directly:
 
 ```bash
 # Build the image
-docker build -t mdns-publisher https://github.com/vivektiwari1986/avahi.git#dev:src
+docker build -t mdns-publisher https://github.com/vivektiwari1986/mDNS-publisher.git#dev:src
 
 # Run the container
 docker run -d \
